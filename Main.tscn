@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Tile.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Checkpoint.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Main.gd" type="Script" id=4]
+[ext_resource path="res://Grunt.tscn" type="PackedScene" id=5]
 
 [node name="Main" type="Node"]
 script = ExtResource( 4 )
@@ -103,3 +104,20 @@ position = Vector2( 392, 464 )
 
 [node name="Checkpoint" parent="." instance=ExtResource( 3 )]
 position = Vector2( 1664, 344 )
+
+[node name="GruntPackage" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1368, 344 )
+scale = Vector2( 2, 2 )
+
+[node name="GruntPackage2" parent="." instance=ExtResource( 5 )]
+position = Vector2( 769, 472 )
+scale = Vector2( 2, 2 )
+
+[node name="PatrolPath" parent="GruntPackage2" index="0"]
+position = Vector2( -4.34138, 0 )
+scale = Vector2( 1.94809, 1 )
+points = PoolVector2Array( -30.8808, 0, -7.04733, 0, 4.56454, 0, 34.8246, 0 )
+
+[editable path="GruntPackage"]
+
+[editable path="GruntPackage2"]

@@ -23,11 +23,13 @@ height = 35.0
 [node name="Player" type="KinematicBody2D" groups=[
 "Persist",
 ]]
+position = Vector2( 1, 0 )
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_group_": true
 }
-jumpSpeedBase = 1800
+speed = 28
+jumpSpeedBase = 2500
 myGravity = 80
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
@@ -37,8 +39,6 @@ animation = "walk"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 2 )
 
-[node name="JumpTimer" type="Timer" parent="."]
-
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
 
@@ -46,5 +46,5 @@ current = true
 
 [node name="AreaCollision" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource( 3 )
-[connection signal="timeout" from="JumpTimer" to="." method="_on_JumpTimer_timeout"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]

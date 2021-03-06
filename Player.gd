@@ -1,64 +1,35 @@
-extends KinematicBody2D
-
-export var speed = 25  		# How fast the player will move (pixels/sec).
-var screen_size 	   		# Size of the game window.
-var onAir = false
-var velocity = Vector2()
-export var jumpSpeedBase = 50
-export var jumpSpeed = 10 	# prevents is_on_floor() flickering (gravity)
-export var myGravity = 5
-
-
-func _ready():
-	screen_size = get_viewport_rect().size
-	onAir = true
-	position.x = screen_size.x / 2
-	position.y = screen_size.y / 2
+extends "res://Character.gd"
 
 
 func _input(event):
 	if event.is_action_pressed("jump") and !onAir:
-		onAir = true
-		jumpSpeed = -jumpSpeedBase
-		$JumpTimer.start()
+		jump()
 
 
 func _physics_process(delta):
-	if !onAir:
-		velocity.x = 0
-		velocity.y = 0
+	._physics_process(delta)
+	
 	if Input.is_action_pressed("ui_right"):
-		velocity.x = 1
-		$AnimatedSprite.flip_h = false
+		move_right()
 	if Input.is_action_pressed("ui_left"):
-		velocity.x = -1
-		$AnimatedSprite.flip_h = true
-	if onAir:
-		jumpSpeed += myGravity
+		move_left()	
+	execute_movement()
 		
 	if velocity.length() > 0:
-		velocity = velocity.normalized() * speed
 		$AnimatedSprite.play()
 	else:
 		$AnimatedSprite.stop()
 
-	var collision_info = move_and_slide(Vector2(velocity.x * speed, jumpSpeed), Vector2.UP, true)
-	if is_on_floor():
-		onAir = false
-		jumpSpeed = 10 # prevents is_on_floor() flickering
-	else:
-		onAir = true
 
-
-func _on_JumpTimer_timeout():
-	# onAir = false
-	pass
+func _on_Area2D_body_entered(body):
+	if body.is_in_group("Enemies"):
+		print("Player hit!")
 
 
 func _on_Area2D_body_exited(body):
 	# print(body.get_name())
 	pass
-	
+
 
 func save():
 	var save_dict = {

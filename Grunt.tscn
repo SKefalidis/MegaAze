@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://icon.png" type="Texture" id=1]
+[ext_resource path="res://Grunt.gd" type="Script" id=2]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 31.0348, 31.3418 )
+
+[node name="GruntPackage" type="Node2D"]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="PatrolPath" type="Line2D" parent="."]
+position = Vector2( -1.00001, 0 )
+scale = Vector2( 0.986486, 1 )
+points = PoolVector2Array( -64, 0, -7.04733, 0, 4.56454, 0, 65.8904, 0 )
+default_color = Color( 0.4, 0.501961, 1, 0.168627 )
+
+[node name="Grunt" type="KinematicBody2D" parent="." groups=[
+"Enemies",
+]]
+script = ExtResource( 2 )
+speed = 10
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Grunt"]
+frames = SubResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Grunt"]
+shape = SubResource( 2 )
