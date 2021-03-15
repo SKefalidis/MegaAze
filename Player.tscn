@@ -46,5 +46,8 @@ current = true
 
 [node name="AreaCollision" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource( 3 )
+
+[node name="BulletSpawnPoint" type="Position2D" parent="."]
+position = Vector2( 65, 0 )
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]

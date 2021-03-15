@@ -116,7 +116,7 @@ scale = Vector2( 2, 2 )
 [node name="PatrolPath" parent="GruntPackage2" index="0"]
 position = Vector2( -4.34138, 0 )
 scale = Vector2( 1.94809, 1 )
-points = PoolVector2Array( -30.8808, 0, -7.04733, 0, 4.56454, 0, 34.8246, 0 )
+points = PoolVector2Array( -30.8808, 0, -7.04733, 0, 4.56454, 0, 59.4641, 0 )
 
 [editable path="GruntPackage"]
 

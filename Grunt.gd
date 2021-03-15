@@ -28,3 +28,9 @@ func _physics_process(delta):
 	elif curPatrolPoint.x > position.x:
 		move_right()
 	execute_movement()
+
+
+func _on_Area2D_body_entered(body):
+	if body.is_in_group("PlayerProjectiles"):
+		print("Enemy hit!")
+		body.enemy_hit()
